@@ -14,9 +14,11 @@ addRoute('/psl', async () => {
   });
 });
 
+type KeyValue = [key: string, value: string];
+
 interface Details {
-  preflightHeaders?: { [name: string]: string };
-  headers?: { [name: string]: string };
+  preflightHeaders?: KeyValue[];
+  headers?: KeyValue[];
   method?: string;
 }
 const detailsMap = new Map<string, Details>();
@@ -35,7 +37,7 @@ function getDetails(id: string | null): Details {
 addRoute('/resource', {
   OPTIONS(url, request) {
     const details = getDetails(url.searchParams.get('id'));
-    details.preflightHeaders = Object.fromEntries(request.headers);
+    details.preflightHeaders = [...request.headers];
     const headers = new Headers();
     const status = Number(url.searchParams.get('preflight-status')) || 206;
 
@@ -55,7 +57,7 @@ addRoute('/resource', {
   },
   all(url, request) {
     const details = getDetails(url.searchParams.get('id'));
-    details.headers = Object.fromEntries(request.headers);
+    details.headers = [...request.headers];
     details.method = request.method;
     const headers = new Headers({
       foo: 'bar',
