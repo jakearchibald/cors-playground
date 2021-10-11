@@ -71,6 +71,18 @@ addRoute('/resource', {
       }
     }
 
+    const cookieValues = url.searchParams.getAll('cookie-value');
+
+    for (const [i, name] of url.searchParams.getAll('cookie-name').entries()) {
+      const value = cookieValues[i];
+      headers.append(
+        'Set-Cookie',
+        `${encodeURIComponent(name)}=${encodeURIComponent(
+          value,
+        )}; Max-Age=86400; SameSite=None; Secure`,
+      );
+    }
+
     return new Response('ok!', { headers });
   },
 });
