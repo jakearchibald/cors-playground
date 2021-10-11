@@ -58,7 +58,11 @@ addRoute('/resource', {
     const details = getDetails(url.searchParams.get('id'));
     details.headers = Object.fromEntries(request.headers);
     details.method = request.method;
-    const headers = new Headers({ foo: 'bar', hello: 'world' });
+    const headers = new Headers({
+      foo: 'bar',
+      hello: 'world',
+      'Content-Type': 'text/plain',
+    });
 
     for (const acHeader of [
       'allow-origin',
