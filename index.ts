@@ -37,10 +37,7 @@ addRoute('/resource', {
     const details = getDetails(url.searchParams.get('id'));
     details.preflightHeaders = Object.fromEntries(request.headers);
     const headers = new Headers();
-
-    if (!url.searchParams.has('preflight')) {
-      return simpleErrorResponse(405, 'Preflight not allowed');
-    }
+    const status = Number(url.searchParams.get('preflight-status')) || 206;
 
     for (const acHeader of [
       'allow-origin',
@@ -56,7 +53,7 @@ addRoute('/resource', {
       }
     }
 
-    return new Response('', { status: 204, headers });
+    return new Response('', { status, headers });
   },
   all(url, request) {
     const details = getDetails(url.searchParams.get('id'));
