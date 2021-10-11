@@ -48,9 +48,7 @@ addRoute('/resource', {
       const fullHeader = `access-control-${acHeader}`;
       const queryKey = `preflight-${fullHeader}`;
       const value = url.searchParams.get(queryKey);
-      if (value) {
-        headers.set(fullHeader, url.searchParams.get(queryKey)!);
-      }
+      if (value) headers.set(fullHeader, url.searchParams.get(queryKey)!);
     }
 
     return new Response('', { status, headers });
@@ -72,9 +70,7 @@ addRoute('/resource', {
     ]) {
       const fullHeader = `access-control-${acHeader}`;
       const value = url.searchParams.get(fullHeader);
-      if (value) {
-        headers.set(fullHeader, url.searchParams.get(fullHeader)!);
-      }
+      if (value) headers.set(fullHeader, url.searchParams.get(fullHeader)!);
     }
 
     const cookieValues = url.searchParams.getAll('cookie-value');
@@ -96,6 +92,9 @@ addRoute('/resource', {
 addRoute('/resource-details', (url) => {
   const details = getDetails(url.searchParams.get('id'));
   return new Response(JSON.stringify(details), {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
   });
 });
