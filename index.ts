@@ -44,7 +44,6 @@ addRoute('/resource', {
       'allow-credentials',
       'allow-methods',
       'allow-headers',
-      'max-age',
     ]) {
       const fullHeader = `access-control-${acHeader}`;
       const queryKey = `preflight-${fullHeader}`;
