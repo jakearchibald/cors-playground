@@ -47,7 +47,8 @@ addRoute('/resource', {
     ]) {
       const fullHeader = `access-control-${acHeader}`;
       const queryKey = `preflight-${fullHeader}`;
-      if (url.searchParams.has(queryKey)) {
+      const value = url.searchParams.get(queryKey);
+      if (value) {
         headers.set(fullHeader, url.searchParams.get(queryKey)!);
       }
     }
@@ -70,7 +71,8 @@ addRoute('/resource', {
       'expose-headers',
     ]) {
       const fullHeader = `access-control-${acHeader}`;
-      if (url.searchParams.has(fullHeader)) {
+      const value = url.searchParams.get(fullHeader);
+      if (value) {
         headers.set(fullHeader, url.searchParams.get(fullHeader)!);
       }
     }
