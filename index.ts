@@ -63,6 +63,7 @@ addRoute('/resource', {
       foo: 'bar',
       hello: 'world',
       'Content-Type': 'text/plain',
+      vary: 'cookie, origin',
     });
 
     for (const acHeader of [
