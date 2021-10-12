@@ -102,3 +102,5 @@ addRoute('/resource-details', (url) => {
     },
   });
 });
+
+// Force redeploy.
