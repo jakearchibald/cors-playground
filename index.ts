@@ -82,9 +82,10 @@ addRoute('/resource', {
       const value = cookieValues[i];
       headers.append(
         'Set-Cookie',
-        `${encodeURIComponent(name)}=${encodeURIComponent(
-          value,
-        )}; Max-Age=86400; SameSite=None; Secure`,
+        encodeURIComponent(name) +
+          '=' +
+          encodeURIComponent(value) +
+          '; Max-Age=86400; SameSite=None; Secure',
       );
     }
 
