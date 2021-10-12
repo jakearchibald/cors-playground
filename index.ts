@@ -1,4 +1,4 @@
-import { addRoute, simpleErrorResponse } from './router.ts';
+import { addRoute } from './router.ts';
 
 addRoute('/psl', async () => {
   const pslResponse = await fetch(
