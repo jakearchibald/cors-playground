@@ -53,7 +53,7 @@ addRoute('/resource', {
       if (value) headers.set(fullHeader, url.searchParams.get(queryKey)!);
     }
 
-    return new Response('', { status, headers });
+    return new Response(null, { status, headers });
   },
   all(url, request) {
     const details = getDetails(url.searchParams.get('id'));
