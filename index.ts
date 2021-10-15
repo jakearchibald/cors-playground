@@ -90,7 +90,10 @@ addRoute('/resource', {
       );
     }
 
-    return new Response(status === 204 ? null : 'response! 😀', { headers });
+    return new Response(status === 204 ? null : 'response! 😀', {
+      status,
+      headers,
+    });
   },
 });
 
