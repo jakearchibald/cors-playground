@@ -62,9 +62,10 @@ addRoute('/resource', {
     const headers = new Headers({
       foo: 'bar',
       hello: 'world',
-      'Content-Type': 'text/plain',
+      'Content-Type': 'text/plain; charset=utf-8',
       vary: 'cookie, origin',
     });
+    const status = Number(url.searchParams.get('status')) || 200;
 
     for (const acHeader of [
       'allow-origin',
@@ -89,7 +90,7 @@ addRoute('/resource', {
       );
     }
 
-    return new Response('ok!', { headers });
+    return new Response(status === 204 ? null : 'response! 😀', { headers });
   },
 });
 
