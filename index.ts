@@ -39,7 +39,7 @@ addRoute('/resource', {
     const details = getDetails(url.searchParams.get('id'));
     details.preflightHeaders = [...request.headers];
     const headers = new Headers();
-    const status = Number(url.searchParams.get('preflight-status')) || 206;
+    const status = Number(url.searchParams.get('preflight-status')) || 204;
 
     for (const acHeader of [
       'allow-origin',
